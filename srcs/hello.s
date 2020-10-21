@@ -1,5 +1,5 @@
-          global    _print
-          section   .text
+            section   .text
+            global    _print
 _print:
           mov       rdx, output             ; rdx holds address of next byte to write
           mov       r8, 1                   ; initial line length
