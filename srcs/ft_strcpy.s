@@ -10,13 +10,13 @@ _ft_strcpy:
 while:
             cmp byte [rsi + rcx], 0
             je  end
-            mov r9, [rsi + rcx]
-            mov [rdi + rcx], r9
+            mov dl, [rsi + rcx]
+            mov [rdi + rcx], dl
             inc rcx
             jmp while
 
 end:
-            mov [rdi + rcx], byte 0
+            mov byte [rdi + rcx], 0
             mov rax, rdi
             ret
 

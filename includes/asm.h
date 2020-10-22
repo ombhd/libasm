@@ -6,7 +6,7 @@
 /*   By: obouykou <obouykou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 11:26:51 by obouykou          #+#    #+#             */
-/*   Updated: 2020/10/20 11:27:06 by obouykou         ###   ########.fr       */
+/*   Updated: 2020/10/22 14:43:43 by obouykou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,3 +14,4 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <string.h>
+#include <fcntl.h>
