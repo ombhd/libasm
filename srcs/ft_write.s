@@ -1,15 +1,16 @@
+
 				section		.text
 				global		_ft_write
 _ft_write:
-				cmp rsi, 0
-				je err
-				cmp rdi, 0
-				jl err
-				cmp rdx, 0
-				jl err
-				mov rax, 0x02000004
+				mov rax, 0x2000004
 				syscall
+				jc err
 				ret
 err:
-				mov rax, -1
-				ret
+        ; push    rax
+        ; call    ___error
+        ; pop     rcx
+        ; mov     [rax], ecx
+         mov rax, -1
+        ; ret
+		; 		ret

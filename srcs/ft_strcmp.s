@@ -1,37 +1,27 @@
             section     .text
             global      _ft_strcmp
 _ft_strcmp:
-			cmp	rdi, 0
-			je end_null
-			cmp rsi, 0
-			je end_null
 
 while:
-			mov dl, [rdi]
-			cmp	[rsi], dl
-			jne end
+			xor rdx, rdx
+			mov dl, byte [rdi]
+			sub	dl, byte [rsi]
+			jnz end
 			cmp byte [rdi], 0
-			je end
+			jz	end
 			cmp	byte [rsi], 0
-			je end
+			jz	end
 			inc rdi
 			inc rsi
 			jmp while
 
 end:
-			cmp dl, [rsi]
-			jl end_neg
-			sub dl, [rsi]
+			js end_neg
 			mov rax, rdx
 			ret
 
 end_neg:
-			sub dl, [rsi]
 			neg dl
 			neg rdx
 			mov rax, rdx
-			ret
-
-end_null:
-			xor rax, rax
 			ret
