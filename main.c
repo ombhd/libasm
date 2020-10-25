@@ -6,7 +6,7 @@
 /*   By: obouykou <obouykou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 10:50:35 by obouykou          #+#    #+#             */
-/*   Updated: 2020/10/23 14:45:29 by obouykou         ###   ########.fr       */
+/*   Updated: 2020/10/25 11:09:30 by obouykou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,42 @@ char		*ft_strdup(const char *src);
 
 int			main(void)
 {
-	char		*s = "\v\v\v\v\v\v\v\v\\";
+	char		*s=malloc(2);
 	int			bz;
-	int			n;
-	char		*s1="";
-	char		*s2="";
+	ssize_t		n;
+	char		*s1="\xff";
+	char		*s2="\xffh";
 	
-	bz = 13;
+	bz = -1;
+
+	/* write */
+	
+	int fd1 = open("test1", O_CREAT|O_RDWR, S_IRUSR|S_IWUSR);
+	int fd2 = open("test2", O_CREAT|O_RDWR, S_IRUSR|S_IWUSR);
+	n = ft_read(fd1, s, bz);
+	printf("\n|M| ==> the return value of ft_read is |%zd| and s=|%s|\n", n, s);
+	printf("errno = |%d|\n", errno);
+	n =    read(fd2, s, bz);
+	printf("\n|O| ==> the return value of    read is |%zd| and s=|%s|\n", n, s);
+	printf("errno = |%d|\n", errno);
+	close(fd1);
+	close(fd2);
+
+/* 	int fd1 = open("./test1", O_CREAT|O_RDWR, S_IRUSR|S_IWUSR);
+	int fd2 = open("./test2", O_CREAT|O_RDWR, S_IRUSR|S_IWUSR);
+	n = ft_write(-1, s, bz);
+	printf("\n|M| ==> the return value of ft_write is |%ld|\n", n);
+	n =    write(-1, s, bz);
+	printf("\n|O| ==> the return value of    write is |%ld|\n", n);
+	close(fd1);
+	close(fd2); */
 
 	/* strdup */
 /* 	printf("|M| ==> string by ft_strdup is |%s|\n", ft_strdup(s));
-	printf("|O| ==> string by    strdup is |%s|\n\n",  strdup(s)); */
+	printf("errno = |%d|\n", errno);
+	printf("|O| ==> string by    strdup is |%s|\n",  strdup(s));
+	printf("errno = |%d|\n", errno); */
+	
 	/* strlen */
 /*  	printf("|M| ==> the length of |%s| = |%zu|\n", s, ft_strlen(s));
 	printf("|O| ==> the length of |%s| = |%zu|\n\n", s, strlen(s)); */
@@ -42,41 +67,24 @@ int			main(void)
 	// printf("|O| ==> the dest2 is |%s|\n\n", strcpy(s2, s));
 
 	// /* strcmp */
-	printf("|M| ==> the return value of ft_strcmp is |%d|\n", ft_strcmp(s1, s2));
-	printf("|O| ==> the return value of    strcmp is |%d|\n\n", strcmp(s1, s2));
-	printf("|M| ==> the return value of ft_strcmp is |%d|\n", ft_strcmp("", "hello"));
-	printf("|O| ==> the return value of    strcmp is |%d|\n\n", strcmp("", "hello"));
-	printf("|M| ==> the return value of ft_strcmp is |%d|\n", ft_strcmp("\xff\xff", "\xff"));
-	printf("|O| ==> the return value of    strcmp is |%d|\n\n",  strcmp("\xff\xff", "\xff"));
-	printf("|M| ==> the return value of ft_strcmp is |%d|\n", ft_strcmp("hello", "hello"));
-	printf("|O| ==> the return value of    strcmp is |%d|\n\n", strcmp("hello", "hello"));
-	printf("|M| ==> the return value of ft_strcmp is |%d|\n", ft_strcmp("hello", "helloa"));
-	printf("|O| ==> the return value of    strcmp is |%d|\n\n", strcmp("hello", "helloa"));
-	printf("|M| ==> the return value of ft_strcmp is |%d|\n", ft_strcmp("helloa", "hello"));
-	printf("|O| ==> the return value of    strcmp is |%d|\n\n", strcmp("helloa", "hello"));
-	printf("|M| ==> the return value of ft_strcmp is |%d|\n", ft_strcmp("hella", "hello"));
-	printf("|O| ==> the return value of    strcmp is |%d|\n\n", strcmp("hella", "hello"));
+	// printf("|%d|\n", '\xff');
+	// printf("|M| ==> the return value of ft_strcmp is |%d|\n", ft_strcmp(s1, s2));
+	// printf("|O| ==> the return value of    strcmp is |%d|\n\n", strcmp(s1, s2));
+	// printf("|M| ==> the return value of ft_strcmp is |%d|\n", ft_strcmp("", "hello"));
+	// printf("|O| ==> the return value of    strcmp is |%d|\n\n", strcmp("", "hello"));
+	// printf("|M| ==> the return value of ft_strcmp is |%d|\n", ft_strcmp("\xff", "\xff\xff"));
+	// printf("|O| ==> the return value of    strcmp is |%d|\n\n",  strcmp("\xff", "\xff\xff"));
+	// printf("|M| ==> the return value of ft_strcmp is |%d|\n", ft_strcmp("hello", "hello"));
+	// printf("|O| ==> the return value of    strcmp is |%d|\n\n", strcmp("hello", "hello"));
+	// printf("|M| ==> the return value of ft_strcmp is |%d|\n", ft_strcmp("hello", "helloa"));
+	// printf("|O| ==> the return value of    strcmp is |%d|\n\n", strcmp("hello", "helloa"));
+	// printf("|M| ==> the return value of ft_strcmp is |%d|\n", ft_strcmp("helloa", "hello"));
+	// printf("|O| ==> the return value of    strcmp is |%d|\n\n", strcmp("helloa", "hello"));
+	// printf("|M| ==> the return value of ft_strcmp is |%d|\n", ft_strcmp("hella", "hello"));
+	// printf("|O| ==> the return value of    strcmp is |%d|\n\n", strcmp("hella", "hello"));
 
-
-	/* write */
-/* 	int fd1 = open("test1", O_CREAT|O_RDWR, S_IRUSR|S_IWUSR);
-	int fd2 = open("test2", O_CREAT|O_RDWR, S_IRUSR|S_IWUSR);
-	n = ft_write(fd1, s, bz);
-	printf("\n|M| ==> the return value of ft_write is |%d|\n", n);
-	n =    write(fd2, s, bz);
-	printf("\n|O| ==> the return value of    write is |%d|\n", n);
-	close(fd1);
-	close(fd2); */
 
 	/* read */
-	// int fd1 = open("test1", O_CREAT|O_RDWR, S_IRUSR|S_IWUSR);
-	// int fd2 = open("test2", O_CREAT|O_RDWR, S_IRUSR|S_IWUSR);
-	// n = ft_read(0, s, bz);
-	// printf("\n|M| ==> the return value of ft_read is |%d| and s=|%s|\n", n, s);
-	// n =    read(0, s, bz);
-	// printf("\n|O| ==> the return value of    read is |%d| and s=|%s|\n", n, s);
-	// close(fd1);
-	// close(fd2);
 	
 	return (0);
 }
