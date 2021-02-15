@@ -10,8 +10,13 @@ _ft_write:
 				ret
 err:
 				push    rax
-				call    ___error
-				pop     rcx
-				mov     [rax], rcx
-				mov		rax, -1
-				ret
+				call    ___error 		; rax = &errno
+				pop     rcx   		 	; rcx = numberOfError
+				mov     [rax], rcx 		; errno = *rax = rcx = numberOfError
+				mov		rax, -1  		; rax = -1
+				ret						; rax = 
+
+; int *___error(void)
+; {
+; 	return (&errno);
+; }
